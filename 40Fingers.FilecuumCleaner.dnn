@@ -1,0 +1,79 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages><package name="40Fingers.FilecuumCleaner" type="Module" version="02.00.00">
+  <friendlyName>40Fingers FilecuumCleaner</friendlyName>
+  <description>
+	<![CDATA[
+    <p>
+        40FINGERS FilecuumCleaner is a powerful DotNetNuke module that allows you to periodicly or manually run jobs that clean your DotNetNuke installation from either too large or too old files in specific directories.
+    </p>
+  ]]>
+  </description>
+  <owner>
+	<name>40Fingers</name>
+	<organization>40Fingers</organization>
+	<url>http://www.40fingers.net</url>
+	<email>info@40fingers.net</email>
+  </owner>
+	<dependencies>
+		<dependency type="CoreVersion">05.02.03</dependency>
+	</dependencies>
+  <license src="License.htm" />
+  <releaseNotes src="releaseNotes.htm" />
+  <components>
+    <component type="Module">
+      <desktopModule>
+        <moduleName>40Fingers.FilecuumCleaner</moduleName>
+        <foldername>40Fingers/FilecuumCleaner</foldername>
+        <businessControllerClass />
+        <supportedFeatures />
+        <moduleDefinitions>
+          <moduleDefinition>
+            <friendlyName>40Fingers FilecuumCleaner</friendlyName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/40Fingers/FilecuumCleaner/View.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>Edit</controlKey>
+                <controlSrc>DesktopModules/40Fingers/FilecuumCleaner/Edit.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle>Change</controlTitle>
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+        </moduleDefinitions>
+      </desktopModule>
+    </component>
+    <component type="Assembly">
+      <assemblies>
+        <basePath>bin</basePath>
+        <assembly>
+          <name>40Fingers.DNN.Modules.FilecuumCleaner.dll</name>
+        </assembly>
+        <assembly>
+          <name>NLog.dll</name>
+        </assembly>
+      </assemblies>
+    </component>
+    <component type="ResourceFile">
+      <resourceFiles>
+        <basePath>DesktopModules/40Fingers/FilecuumCleaner</basePath>
+        <resourceFile>
+          <name>Resources.zip</name>
+        </resourceFile>
+      </resourceFiles>
+    </component>
+  </components>
+</package></packages>
+</dotnetnuke>
