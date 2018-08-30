@@ -1,5 +1,5 @@
 ﻿<dotnetnuke type="Package" version="5.0">
-  <packages><package name="40Fingers.FilecuumCleaner" type="Module" version="02.00.00">
+  <packages><package name="40Fingers.FilecuumCleaner" type="Module" version="02.01.00">
   <friendlyName>40Fingers FilecuumCleaner</friendlyName>
   <description>
 	<![CDATA[

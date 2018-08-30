@@ -46,13 +46,11 @@
             <div class="dnnFormMessage dnnFormInfo">
                 <asp:Label runat="server" ID="lblInformation" resourcekey="lblInformation"></asp:Label>
             </div>
-                <div class="dnnFormItem">
-                    <asp:HyperLink runat="server" ID="AddJobButton" resourcekey="AddJobButton" CssClass="dnnPrimaryAction" ></asp:HyperLink>
-                </div>
             <asp:Repeater runat="server" ID="rptJobs" OnItemDataBound="rptJobs_ItemDataBound" OnItemCommand="rptJobs_ItemCommand">
                 <HeaderTemplate>
                     <table width="100%">
                         <tr class="dnnGridHeader">
+                            <th>Enabled</th>
                             <th>Name</th>
                             <th>Commands</th>
                             <th style="text-align: right;">Reorder</th>
@@ -64,6 +62,9 @@
                 <ItemTemplate>
                     <tr class="dnnGridItem">
                         <td>
+                            <asp:CheckBox runat="server" ID="chkJobActive" Enabled="False"></asp:CheckBox>
+                        </td>
+                        <td>
                             <asp:Label runat="server" ID="lblJobName"></asp:Label>
                         </td>
                         <td>
@@ -72,7 +73,6 @@
                             <asp:LinkButton runat="server" ID="btnRunJob" resourcekey="btnRunJob" CommandName="RunJob" CssClass="dnnSecondaryAction"></asp:LinkButton>
                             <asp:LinkButton runat="server" ID="btnTestJob" resourcekey="btnTestJob" CommandName="TestJob" CssClass="dnnSecondaryAction" Visible="False"></asp:LinkButton>
                             <asp:LinkButton runat="server" ID="btnShowFiles" resourcekey="btnShowFiles" CommandName="ShowFiles" CssClass="dnnSecondaryAction"></asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="btnHideFiles" resourcekey="btnHideFiles" CommandName="HideFiles" CssClass="dnnSecondaryAction"></asp:LinkButton>
                         </td>
                         <td style="text-align: right;">
                             <asp:LinkButton runat="server" ID="btnJobUp" resourcekey="btnJobUp" CommandName="JobUp"></asp:LinkButton>

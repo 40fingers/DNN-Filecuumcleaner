@@ -190,7 +190,7 @@
     <value>This indicates which job is currently registered as executing. If you have reason to believe this is incorrect, you can clear this value with the button.</value>
   </data>
   <data name="lblInformation.Text" xml:space="preserve">
-    <value>When the scheduled item for the module runs, below tasks get executed sequentially as defined below. If you need to run the task on different intervals, you can change that in the DNN scheduler.</value>
+    <value>When the scheduled item for the module runs, below tasks get executed sequentally as defined below. If you need to run task on different intervals, you can change that in the DNN scheduler.</value>
   </data>
   <data name="lblSchedulerStatus.Help" xml:space="preserve">
     <value>Indicates the current status of the scheduler-item for this module. If it doesn't exist, it will be created when you enable it. Disabling here does the same thing as disabling in the DNN scheduler.</value>
@@ -200,11 +200,5 @@
   </data>
   <data name="OnlyForSuperUsers.Text" xml:space="preserve">
     <value>For security reasons, this module can only be used by Super Users.</value>
-  </data>
-  <data name="AddJobButton.Text" xml:space="preserve">
-    <value>Add Job</value>
-  </data>
-  <data name="btnHideFiles.Text" xml:space="preserve">
-    <value>Hide Files</value>
   </data>
 </root>

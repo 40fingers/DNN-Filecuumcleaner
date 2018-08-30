@@ -62,9 +62,6 @@ namespace FortyFingers.FilecuumCleaner
 
         private void FillForm()
         {
-
-            AddJobButton.NavigateUrl = EditUrl();
-
             var job = RunningJob;
 
             if (job != null)
@@ -153,6 +150,9 @@ namespace FortyFingers.FilecuumCleaner
             var lbl = (Label)e.Item.FindControl("lblJobName");
             lbl.Text = String.Format("{0} ({1})", data.Name, data.Id);
 
+            var chk = (CheckBox)e.Item.FindControl("chkJobActive");
+            chk.Checked = data.Enabled;
+
             var lnk = (HyperLink)e.Item.FindControl("btnEditJob");
             lnk.NavigateUrl = EditUrl("jobId", data.Id);
 
@@ -172,9 +172,6 @@ namespace FortyFingers.FilecuumCleaner
             btn = (LinkButton)e.Item.FindControl("btnShowFiles");
             btn.CommandArgument = data.Id;
             btn.Enabled = RunningJob == null || RunningJob.Id != data.Id;
-
-            btn = (LinkButton)e.Item.FindControl("btnHideFiles");
-            btn.Visible = showFilesForJob == data.Id;
 
             btn = (LinkButton)e.Item.FindControl("btnJobUp");
             btn.CommandArgument = data.Id;
@@ -208,9 +205,7 @@ namespace FortyFingers.FilecuumCleaner
                     var filesHit = new List<string>();
                     var filesSkipped = new List<string>();
 
-                    showFilesForJob = e.CommandArgument.ToString();
-
-                    JobManager.GetCleanerJobFiles(showFilesForJob, ref filesHit, ref filesSkipped);
+                    JobManager.GetCleanerJobFiles(e.CommandArgument.ToString(), ref filesHit, ref filesSkipped);
                     rptFilesHit.DataSource = filesHit;
                     rptFilesHit.DataBind();
                     rptFilesSkipped.DataSource = filesSkipped;
@@ -218,13 +213,6 @@ namespace FortyFingers.FilecuumCleaner
 
                     ShowFilesPanel.Visible = true;
 
-                    break;
-                case "HideFiles":
-                    rptFilesHit.DataSource = new List<string>();
-                    rptFilesHit.DataBind();
-                    rptFilesSkipped.DataSource = new List<string>();
-                    rptFilesSkipped.DataBind();
-                    ShowFilesPanel.Visible = false;
                     break;
                 case "JobUp":
                     BatchConfig.MoveJobUp(e.CommandArgument.ToString());
@@ -240,7 +228,6 @@ namespace FortyFingers.FilecuumCleaner
             FillForm();
         }
 
-        private string showFilesForJob { get; set; }
         protected void rptFiles_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             switch (e.Item.ItemType)

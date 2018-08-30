@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Controllers;
 using DotNetNuke.Entities.Host;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Services.Scheduling;
@@ -12,7 +13,6 @@ namespace FortyFingers.FilecuumCleaner.Components
 {
     public class JobManager
     {
-        private static HostSettingsController HsCtrl = new HostSettingsController();
 
         private static string RunningJobHostSetting
         {
@@ -25,21 +25,22 @@ namespace FortyFingers.FilecuumCleaner.Components
 
         public static string GetRunningJob()
         {
-            var dr = HsCtrl.GetHostSetting(RunningJobHostSetting);
-            var retval = "";
-            try
-            {
-                while (dr.Read())
-                {
-                    retval = Convert.ToString(dr["SettingValue"]);
-                }
-            }
-            finally
-            {
-                if (!dr.IsClosed)
-                    dr.Close();
-            }
-            return retval;
+            return HostController.Instance.GetString(RunningJobHostSetting, "");
+            //var dr = HsCtrl.GetHostSetting(RunningJobHostSetting);
+            //var retval = "";
+            //try
+            //{
+            //    while (dr.Read())
+            //    {
+            //        retval = Convert.ToString(dr["SettingValue"]);
+            //    }
+            //}
+            //finally
+            //{
+            //    if (!dr.IsClosed)
+            //        dr.Close();
+            //}
+            //return retval;
         }
 
         public static bool SetRunningJob(string jobId)
@@ -47,7 +48,8 @@ namespace FortyFingers.FilecuumCleaner.Components
             var retval = false;
 
             // update the job
-            HsCtrl.UpdateHostSetting(RunningJobHostSetting, jobId, false, true);
+            HostController.Instance.Update(RunningJobHostSetting, jobId, true);
+
             // doublecheck to see if the update succeeded
             retval = (jobId == GetRunningJob());
 
@@ -56,20 +58,14 @@ namespace FortyFingers.FilecuumCleaner.Components
 
         public static DateTime GetJobLastStarted(string jobId)
         {
-            var dr = HsCtrl.GetHostSetting(JobLastStartedHostSetting(jobId));
             var retval = Null.NullDate;
             try
             {
-                while (dr.Read())
-                {
-                    var s = Convert.ToString(dr["SettingValue"]);
+                    var s = HostController.Instance.GetString(JobLastStartedHostSetting(jobId), "");
                     DateTime.TryParse(s, out retval);
-                }
             }
-            finally
+            catch
             {
-                if (!dr.IsClosed)
-                    dr.Close();
             }
             return retval;
         }
@@ -81,7 +77,8 @@ namespace FortyFingers.FilecuumCleaner.Components
             var t = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
             // update the job
-            HsCtrl.UpdateHostSetting(JobLastStartedHostSetting(jobId), t, false, true);
+            HostController.Instance.Update(JobLastStartedHostSetting(jobId), t, true);
+            
             // doublecheck to see if the update succeeded
             retval = (t == GetJobLastStarted(jobId).ToString("yyyy/MM/dd HH:mm:ss"));
 

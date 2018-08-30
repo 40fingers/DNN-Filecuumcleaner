@@ -18,7 +18,7 @@ namespace FortyFingers.FilecuumCleaner.Components
             FilecuumCleanerJobs = new List<FilecuumCleanerJob>();
         }
 
-        public static FilecuumCleanerConfig GetConfig(bool useCache)
+        public new static FilecuumCleanerConfig GetConfig(bool useCache)
         {
             var cfg = new ConfigFileBase<FilecuumCleanerConfig>(Null.NullInteger, "FilecuumCleaner", "FilecuumCleanerConfig");
             return cfg.GetConfig();

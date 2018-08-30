@@ -8,8 +8,8 @@ namespace FortyFingers.FilecuumCleaner.Library
 {
     public class Logger
     {
-        private static volatile Logger instance;
-        private static object syncRoot = new Object();
+        //private static volatile Logger instance;
+        //private static object syncRoot = new Object();
 
         public NLog.Logger Nlogger { get; set; }
 

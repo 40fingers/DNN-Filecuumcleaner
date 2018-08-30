@@ -177,7 +177,7 @@ namespace FortyFingers.FilecuumCleaner.Library
                 value = HttpContext.Current.Server.UrlDecode(value);
                 return value;
             }
-            catch (System.Exception ex)
+            catch
             {
                 return "";
             }
